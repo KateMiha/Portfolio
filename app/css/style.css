@@ -1,0 +1,390 @@
+/*@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+@font-face {
+    font-family: "Troubleside";
+    src: url("fonts/Troubleside.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+    display: grid;
+    grid-template-rows: 5fr 1fr;
+}
+canvas{
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100vh;
+    top:0;
+}
+
+/*Nav*/
+
+nav{
+    /*font-family: 'Permanent Marker', cursive;*/
+    font-family: 'Troubleside';
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    color: white;
+    font-size: 0.8em;
+}
+nav > ul{
+    /*display: flex;*/
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+}
+nav > ul > li{
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    list-style: none;
+    transition: .5s;
+}
+nav > ul > li.active{
+    transform: scale(1.5);
+}
+nav > ul > li > span{
+    text-shadow: 0 0 3px rgba(0,0,0, 0.4);
+}
+
+/*Main*/
+
+main{
+    width: 100%;
+    height: 85vh;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 100px 50px 100px 50px;
+    overflow: hidden;
+}
+main > section {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    padding: 0 50px;
+}
+
+main > section > div{
+    position: relative;
+    width: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 2px;
+    transition: .5s;
+    overflow: hidden;
+}
+
+main > section > div.toLeft{
+    left: -150%;
+    right: auto;
+}
+main > section > div.toRight{
+    left: auto;
+    right: -150%;
+}
+
+main > section > div.leftToRight{
+    left: 0;
+    right: auto;
+}
+main > section > div.rightToLeft{
+    left: auto;
+    right: 0;
+}
+
+main > section > div.toTop{
+    top: -100vh;
+    bottom: auto;
+}
+main > section > div.toBottom{
+    top: auto;
+    bottom: -100vh;
+}
+
+main > section > div.topToBottom{
+    top: 0;
+    bottom: auto;
+}
+main > section > div.bottomToTop{
+    top: auto;
+    bottom: 0;
+}
+
+#divInSection{
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+/*Skills*/
+
+#skills{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.skillBox{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 20px;
+}
+
+.labelSkills{
+    display: flex;
+    color: white;
+}
+.progressBox{
+    display: flex;
+    align-self: center;
+    overflow: hidden;
+    box-shadow: 0 0 10px 4px rgba(0,0,0,0.5);
+}
+.progressBackground{
+    border-radius: 4px;
+    position: absolute;
+    background: whitesmoke;
+    width: 70%;
+    height: .7rem;
+    z-index: 1;
+    align-self: center;
+}
+.skills{
+    border-radius: 4px;
+    position: relative;
+    z-index: 2;
+    height: .7rem;
+    align-self: center;
+    box-shadow: 0 0 2px 1px rgba(0,0,0,0.5);
+}
+
+/*Project*/
+
+#carousel{
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    height: 100%;
+}
+
+.arrowRight,.arrowLeft{
+    position:   relative;
+    display: flex;
+    justify-content: center;
+    width: 40px;
+    height: 100%;
+    color:white;
+    /*background-color: rgba(0,0,0,0.2);*/
+    transition: 1s;
+    z-index: 999;
+    flex: 1;
+    cursor: pointer;
+}
+.arrowRight:hover .arrow,.arrowLeft:hover .arrow{
+    transform: scale(1.05);
+    opacity: 0.8;
+}
+.arrowRight{
+    right: 0;
+}
+.arrowRight .arrow:after{
+    content: "";
+    display: block;
+    background: url("../../src/img/arrowRight.png") no-repeat;
+    width: 25px;
+    height: 25px;
+}
+.arrowLeft{
+    left: 0;
+}
+.arrowLeft .arrow:after{
+    content: "";
+    display: block;
+    background: url("../../src/img/arrowLeft.png") no-repeat;
+    width: 25px;
+    height: 25px;
+}
+.arrow{
+    align-self: center;
+    opacity: 0.5;
+}
+
+#carouselBox{
+    flex: 25;
+    position: relative;
+    overflow: hidden;
+}
+.box{
+    width: 100%;
+    height: 100%;
+    display: none;
+    position: relative;
+}
+.box.active{
+    display: block;
+}
+
+.carouselImg{
+    width: 100%;
+    height: 100%;
+    background-size: 100% auto;
+}
+.carouselText{
+    width: 100%;
+    height: 100%;
+}
+.carouselText div {
+    width: 100% ;
+    height: 100%;
+    position: absolute;
+    bottom: 0;
+    box-shadow: 10px -100px 90px 4px rgba(0,0,0,0.8) inset;
+}
+.carouselText div a{
+    display: inline-block;
+    text-decoration: none;
+    text-shadow: 0 0 3px rgba(0,0,0, 0.4);
+    color: #d0d0d0;
+    font-size: 24px;
+    transition: .5s;
+}
+.carouselText div a h5{
+    position: absolute;
+    bottom: 50px;
+    left: 25px;
+}
+.carouselText div a h5:hover{
+    opacity: 0.8;
+    transform: scale(1.02);
+}
+
+#carouselCounter{
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+}
+.carouselCounterCircle{
+    cursor: pointer;
+    width: 8px;
+    height: 8px;
+    background: dimgray;
+    border-radius: 50%;
+}
+.carouselCounterCircle.active{
+    cursor: auto;
+    background: white;
+}
+
+
+/*Contacts*/
+#contacts{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: white;
+    gap: 25px;
+    height: 100%;
+}
+#contacts p {
+    text-align: center;
+}
+.iconsBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 25px;
+}
+.contactsIcon{
+    width: 50px;
+    height: 50px;
+    transition: .5s;
+}
+.contactsIcon:hover{
+    transform: scale(1.02) ;
+    opacity: 0.8;
+}
+
+/*info*/
+
+#info{
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+}
+
+.infoPhoto{
+    display: flex;
+    justify-content: center;
+    padding: 0 100px;
+}
+.infoImg{
+    height: 30vh;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 2px;
+    /*border-image: linear-gradient(180deg, #d0368a 0%, #708ad4 99%) 1;*/
+}
+
+.name{
+    position: relative;
+    overflow-y: auto;
+    max-height: calc(55vh - 220px);
+    padding-right: 15px;
+    white-space: normal;
+    word-wrap: break-word;
+}
+.name::-webkit-scrollbar {
+    width: 6px;
+}
+.name::-webkit-scrollbar-track {
+    background-color: rgba(255, 255, 255, 0.25);
+    border-radius: 3px;
+}
+.name::-webkit-scrollbar-thumb {
+    width: 4px;
+    cursor: pointer;
+    border-radius: 3px;
+    box-shadow:  0 0 6px 2px rgba(0, 0, 0, 0.3);
+    background-image: linear-gradient(180deg, #d0368a 0%, #708ad4 99%);
+}
+
+.name p{
+    text-indent: 20px;
+    line-height: 1.5em;
+    color: white;
+    text-shadow: 0 0 2px rgba(0,0,0, 1);
+    font-size: 1rem;
+}
+
+footer{
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    color: rgba(255,255,255, 0.3);
+    position: absolute;
+    bottom: 0;
+    font-size: 0.8rem;
+}
